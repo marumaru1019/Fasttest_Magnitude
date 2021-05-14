@@ -11,17 +11,16 @@ import logging
 
 class CreateText:
     def __init__(self, arg):
-        self.normalize = arg.normalize
         self.get_speech = []
-        if "d" arg.part_of_speech:
+        if "d" in arg.part_of_speech:
             self.get_speech.append("動詞")
-        if "m" arg.part_of_speech:
+        if "m" in arg.part_of_speech:
             self.get_speech.append("名詞")
-        if "k" arg.part_of_speech:
+        if "k" in arg.part_of_speech:
             self.get_speech.append("形容詞")
 
-    def load_sentence(self):
-        txt_data = open(arg.text_file_path, 'r')
+    def load_sentence(self, text_file_path):
+        txt_data = open(text_file_path, 'r')
         text = "".join(txt_data.readlines())
         return text
 
@@ -74,7 +73,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(allow_abbrev=False)
 
     parser.add_argument("--text_file_path", type=str, default="../input_data/sample.txt", help="Chose your text file to get synonym")
-    parser.add_argument("--normalize", type=bool, default=True, help="Resolution of notation distortions")
     parser.add_argument("--part_of_speech", type=str, default="dm", help="d:動詞, m:名詞, k:形容詞")
 
     arg = parser.parse_args()

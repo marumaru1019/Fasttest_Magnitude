@@ -8,10 +8,12 @@ from model import LoadMagnitude
 
 import pandas as pd
 
+import logging
+
 
 class FindSynonym:
     def __init__(self, arg):
-        self.col = ["word1", "word2", "siimirality", "credibility"]
+        self.col = ["word1", "word2", "simirality", "credibility"]
 
     # Calculate similarity using the principle of combination to avoid duplication
     def calc_similarity(self, wakati_dic: dict, fasttext_model):
@@ -43,12 +45,12 @@ class FindSynonym:
             # Remove first element
             wakati_word.pop(0)
         # Store result in table
-        df = pd.DataFrame(sim_list, columns=self.col)
+        df_text = pd.DataFrame(sim_list, columns=self.col)
 
         return df_text
 
     def output_synonym_file(self, df):
-        result = df[df["similarity"]>=arg.threshold]
+        result = df[df["simirality"] >= arg.threshold]
 
         if arg.file_type == "csv":
             result.to_csv(f"{arg.file_name}.csv")
@@ -59,13 +61,16 @@ class FindSynonym:
 
 
 if __name__ == '__main__':
+
+    # Logging information in terminal
+    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+
     import argparse
 
     parser = argparse.ArgumentParser(allow_abbrev=False)
 
     # utils argparse
     parser.add_argument("--text_file_path", type=str, default="../input_data/sample.txt", help="Chose your text file to get synonym")
-    parser.add_argument("--normalize", type=bool, default=True, help="Resolution of notation distortions")
     parser.add_argument("--part_of_speech", type=str, default="dm", help="d:動詞, m:名詞, k:形容詞")
 
     # model argparse
@@ -86,7 +91,7 @@ if __name__ == '__main__':
     logging.info("Finish loading model!")
 
     txt = CreateText(arg)
-    text = txt.load_sentence()
+    text = txt.load_sentence(arg.text_file_path)
     normalized_text = txt.normalize(text)
 
     tagger = txt.set_mecab_dict()
