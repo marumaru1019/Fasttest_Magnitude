@@ -46,3 +46,4 @@ $ python find_synonym.py --text_file_path=../input_data/{Your original text file
 ```
 ## Demo
 Domo of this project run in colab is shown in following url.  
+https://colab.research.google.com/drive/1xf9A3Z5benSBAaRQSOKCOu9XgRsxsh5h#scrollTo=JcXbFy-zd8tX
