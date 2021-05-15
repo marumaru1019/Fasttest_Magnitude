@@ -7,7 +7,7 @@ from pymagnitude import *
 import logging
 
 #########################
-# Magnitude + fasttext
+# Magnitude + fasttext(word2vec)
 # Magnitude is a natural language library that is upwardly compatible with genisum,
 # and can retrieve word vectors at high speed.
 # Unknown words can be dealt with based on the vector of similar known words in the same string.
