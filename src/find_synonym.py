@@ -51,6 +51,7 @@ class FindSynonym:
 
     def output_synonym_file(self, df):
         result = df[df["simirality"] >= arg.threshold]
+        print(result)
 
         if arg.file_type == "csv":
             result.to_csv(f"{arg.file_name}.csv")
@@ -79,8 +80,8 @@ if __name__ == '__main__':
     # find synonym argparse
     parser.add_argument("--file_type", type=str, default="csv", help="Chose file type {csv or xlsx}")
     parser.add_argument("--file_name", type=str, default="synonym", help="Fill in the file name")
-    parser.add_argument("--threshold", type=int, default=0,
-                    help="What is the threshold of sord similarity? MIN:0 MAX:1 0.5 is better")
+    parser.add_argument("--threshold", type=float, metavar='N', default=0,
+                        help="What is the threshold of sord similarity? MIN:0 MAX:1 0.5 is better")
 
 
     arg = parser.parse_args()
@@ -105,9 +106,3 @@ if __name__ == '__main__':
 
     syn.output_synonym_file(df_text)
     logging.info(f"Create synonym file {arg.file_type}")
-
-
-
-
-
-

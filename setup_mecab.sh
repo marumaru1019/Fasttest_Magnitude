@@ -3,7 +3,6 @@
 ####################################
 # Mecab setup shell script
 # Install mecab dictionary from
-#
 # Reference : https://github.com/neologd/mecab-ipadic-neologd/blob/master/README.ja.md
 ####################################
 

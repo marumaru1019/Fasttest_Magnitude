@@ -76,5 +76,3 @@ if __name__ == '__main__':
     parser.add_argument("--part_of_speech", type=str, default="dm", help="d:動詞, m:名詞, k:形容詞")
 
     arg = parser.parse_args()
-
-
